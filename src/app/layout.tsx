@@ -4,7 +4,8 @@ import type { ReactNode } from "react";
 const APP_NAME = "Air Quality Eindhoven";
 const APP_DEFAULT_TITLE = "Air Quality Eindhoven";
 const APP_TITLE_TEMPLATE = "%s - AQ Eindhoven";
-const APP_DESCRIPTION = "Making the invisible visible. Air Quality Eindhoven provides real-time air quality data for Eindhoven, the Netherlands.";
+const APP_DESCRIPTION =
+  "Making the invisible visible. Air Quality Eindhoven provides real-time air quality data for Eindhoven, the Netherlands.";
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
