@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import "./globals.css";
 
 const APP_NAME = "Air Quality Eindhoven";
 const APP_DEFAULT_TITLE = "Air Quality Eindhoven";
