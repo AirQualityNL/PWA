@@ -3,9 +3,9 @@
   "short_name": "AQ-Eindhoven",
   "icons": [
     {
-      "src": "/icons/icon.svg",
-      "sizes": "48x48 72x72 96x96 128x128 256x256 512x512",
-      "type": "image/svg+xml",
+      "src": "/icons/icon.png",
+      "sizes": "154x154",
+      "type": "image/png",
       "purpose": "any"
     }
   ],
