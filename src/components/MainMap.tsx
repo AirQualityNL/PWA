@@ -5,12 +5,14 @@ import "leaflet/dist/leaflet.css";
 import { useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { PollutantLayer } from "./layer/PollutantLayer";
+import GeoSearchBar from "./GeoSearchBar";
 
 const MainMap = () => {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="h-screen flex">
+      <GeoSearchBar />
       <MapContainer
         className="z-0 w-full h-full"
         center={[51.4416, 5.4697]}
