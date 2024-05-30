@@ -11,6 +11,5 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd hosting
           npm install @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript
           npx eslint .
