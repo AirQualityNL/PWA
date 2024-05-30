@@ -13,11 +13,13 @@
     "@serwist/precaching": "^9.0.2",
     "@serwist/sw": "^9.0.2",
     "@vgrid/react-leaflet-heatmap-layer": "^4.0.3",
+    "framer-motion": "^11.2.9",
     "leaflet": "^1.9.4",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-leaflet": "^4.2.1"
+    "react-leaflet": "^4.2.1",
+    "react-use-measure": "^2.1.1"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.12",
