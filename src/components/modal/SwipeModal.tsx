@@ -77,6 +77,7 @@ export const DragCloseDrawer = ({ open, setOpen, children }: Props) => {
                                 onPointerDown={(e) => {
                                     controls.start(e);
                                 }}
+                                onClick={() => handleClose()}
                                 className="h-2 w-14 cursor-grab touch-none rounded-full bg-neutral-700 active:cursor-grabbing"
                             ></button>
                         </div>
