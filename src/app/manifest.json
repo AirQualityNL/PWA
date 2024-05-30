@@ -1,0 +1,17 @@
+{
+  "name": "Air Quality Eindhoven",
+  "short_name": "AQ-Eindhoven",
+  "icons": [
+    {
+      "src": "/icons/icon.png",
+      "sizes": "154x154",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
