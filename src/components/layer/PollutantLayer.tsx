@@ -1,30 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { HeatmapLayerFactory } from "@vgrid/react-leaflet-heatmap-layer";
 import pollutants from "../../data/pollutants.json";
-import Pollutant from "@/interfaces/Pollutants";
-
 interface PollutantMapProps {
-  displayPM1: boolean;
-  displayPM25: boolean;
-  displayPM10: boolean;
-  displayNO2: boolean;
+  displayPM1?: boolean;
+  displayPM25?: boolean;
+  displayPM10?: boolean;
+  displayNO2?: boolean;
 }
 
 const HeatmapLayer = HeatmapLayerFactory<[number, number, number]>();
 
 export const PollutantLayer: React.FC<PollutantMapProps> = ({
-  displayPM1,
-  displayPM25,
-  displayPM10,
-  displayNO2,
+  displayPM1 = true,
+  displayPM25 = true,
+  displayPM10 = true,
+  displayNO2 = true,
 }) => {
-  const [pollutantData, setPollutantData] = useState<Pollutant[]>([]);
+  const [pollutantData, setPollutantData] = useState<any[]>([]);
   const [heatmapPoints, setHeatmapPoints] = useState<
     [number, number, number][]
   >([]);
 
   useEffect(() => {
-    setPollutantData(pollutants as unknown as Pollutant[]);
+    setPollutantData(pollutants as unknown as any[]);
   }, []);
 
   useEffect(() => {
