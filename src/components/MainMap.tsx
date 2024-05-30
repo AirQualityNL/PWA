@@ -1,79 +1,24 @@
 "use client";
 
 import { MapContainer, TileLayer } from "react-leaflet";
-import { useState } from "react";
-import { OptionsButton } from "./OptionsButton";
 import "leaflet/dist/leaflet.css";
 import { PollutantLayer } from "./layer/PollutantLayer";
-import { RadioButton } from "./RadioButton";
 
 const MainMap = () => {
-  const [displayPollutants, setDisplayPollutants] = useState<boolean>(false);
-  const [selectedPollutant, setSelectedPollutant] = useState<string>("PM1");
-
   return (
     <div className="h-screen flex">
-      <div className="w-1/5 bg-gray-100 p-3">
-        <h2 className="text-lg font-semibold mb-4 ml-4">Options</h2>
-        <OptionsButton
-          id="display pollutants"
-          display_name="Display pollutants"
-          get={displayPollutants}
-          set={setDisplayPollutants}
+      <MapContainer className="w-full h-full" center={[51.4416, 5.4697]} zoom={12}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-
-        {displayPollutants && (
-          <>
-            <h3 className="text-sm font-semibold mt-4">Pollutants</h3>
-            <RadioButton
-              id="display PM1"
-              display_name="display PM1"
-              value="PM1"
-              selectedValue={selectedPollutant}
-              onChange={setSelectedPollutant}
-            />
-            <RadioButton
-              id="display PM2.5"
-              display_name="display PM2.5"
-              value="PM2.5"
-              selectedValue={selectedPollutant}
-              onChange={setSelectedPollutant}
-            />
-            <RadioButton
-              id="display PM10"
-              display_name="display PM10"
-              value="PM10"
-              selectedValue={selectedPollutant}
-              onChange={setSelectedPollutant}
-            />
-            <RadioButton
-              id="display NO2"
-              display_name="display NO2"
-              value="NO2"
-              selectedValue={selectedPollutant}
-              onChange={setSelectedPollutant}
-            />
-          </>
-        )}
-      </div>
-      <div className="w-4/5">
-        <h3 className="text-sm font-semibold mt-4">Map</h3>
-
-        <MapContainer className="h-full" center={[51.4416, 5.4697]} zoom={12}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          {displayPollutants && (
-            <PollutantLayer
-              displayPM1={selectedPollutant === "PM1"}
-              displayPM25={selectedPollutant === "PM2.5"}
-              displayPM10={selectedPollutant === "PM10"}
-              displayNO2={selectedPollutant === "NO2"}
-            />
-          )}
-        </MapContainer>
-      </div>
+        <PollutantLayer
+          displayPM1={true}
+          displayPM25={true}
+          displayPM10={true}
+          displayNO2={true}
+        />
+      </MapContainer>
     </div>
   );
 };
