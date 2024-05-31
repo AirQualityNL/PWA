@@ -2,7 +2,17 @@ const GeoSearchBar = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        console.log("Search submitted");
+        const search = (e.currentTarget.querySelector('input[type="search"]') as HTMLInputElement).value;
+        const url = `https://nominatim.openstreetmap.org/search.php?q=${search}&format=jsonv2`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     };
 
     return (
