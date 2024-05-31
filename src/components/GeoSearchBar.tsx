@@ -1,6 +1,12 @@
 const GeoSearchBar = () => {
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+        console.log("Search submitted");
+    };
+
     return (
-        <form className="absolute z-50 top-0 inset-x-0 max-w-md mt-8 mx-auto">
+        <form onSubmit={handleSubmit} className="absolute z-50 top-0 inset-x-0 max-w-md mt-8 mx-auto">
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div className="relative">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
