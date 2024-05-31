@@ -27,7 +27,8 @@ export const DragCloseDrawer = ({ open, setOpen, children }: Props) => {
 
     const yStart = typeof y.get() === "number" ? y.get() : 0;
 
-    animate("#drawer", {
+    // await neccesary for smooth animation
+    await animate("#drawer", {
       y: [yStart, height],
     });
 
