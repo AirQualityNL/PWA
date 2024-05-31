@@ -1,30 +1,20 @@
 "use client";
 
 import { DragCloseDrawer } from "@/components/modal/SwipeModal";
+import MapSection from "@/sections/MapSection";
+import PolutantsSection from "@/sections/PolutantsSection";
 import "leaflet/dist/leaflet.css";
 import { useState } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
-import { PollutantLayer } from "./layer/PollutantLayer";
 
-const MainMap = () => {
+const MainPage = () => {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="h-screen flex">
-      <MapContainer
-        className="z-0 w-full h-full"
-        center={[51.4416, 5.4697]}
-        zoom={12}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        <PollutantLayer />
-      </MapContainer>
+      <MapSection />
       <DragHandle onClick={() => setOpen(true)} />
       <DragCloseDrawer open={open} setOpen={setOpen}>
-        modal content
+        <PolutantsSection />
       </DragCloseDrawer>
     </div>
   );
@@ -41,4 +31,4 @@ const DragHandle = ({ onClick }: { onClick: () => void }) => {
   );
 };
 
-export default MainMap;
+export default MainPage;
