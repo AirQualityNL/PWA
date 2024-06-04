@@ -1,6 +1,5 @@
-import dynamic from "next/dynamic";
-const MainMap = dynamic(() => import("@/components/MainMap"), { ssr: false });
+import MainPage from "@/pages/Main";
 
 export default function Home() {
-  return <MainMap />;
+  return <MainPage />;
 }
