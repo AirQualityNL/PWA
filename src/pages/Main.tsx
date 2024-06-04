@@ -2,10 +2,12 @@
 
 import GeoSearchBar from "@/components/GeoSearchBar";
 import { DragCloseDrawer } from "@/components/modal/SwipeModal";
-import MapSection from "@/sections/MapSection";
 import PolutantsSection from "@/sections/PolutantsSection";
 import "leaflet/dist/leaflet.css";
+import dynamic from "next/dynamic";
 import { useState } from "react";
+
+const MapSection = dynamic(() => import("@/sections/MapSection"), { ssr: false });
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);

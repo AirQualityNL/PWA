@@ -1,5 +1,4 @@
-import dynamic from "next/dynamic";
-const MainPage = dynamic(() => import("@/pages/Main"), { ssr: false });
+import MainPage from "@/pages/Main";
 
 export default function Home() {
   return <MainPage />;
