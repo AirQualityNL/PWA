@@ -16,8 +16,8 @@ const PollutantCard = ({ currentValue: current_value, nextValue: next_value, lab
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg>
             </div>
-            <p className="text-center p-6 text-5xl">{current_value} <span>μg/m³</span></p>
-            <p className="absolute bottom-0 right-0 p-6 text-right text-2xl">Next hour: {next_value} <span>μg/m³</span></p>
+            <p className="text-center p-4 text-4xl md:text-5xl">{current_value} <span>μg/m³</span></p>
+            <p className="absolute bottom-0 right-0 p-4 md:p-6 text-right text-2xl">Next hour: {next_value} <span>μg/m³</span></p>
         </div>
     );
 }
