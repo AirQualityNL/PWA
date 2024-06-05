@@ -1,15 +1,53 @@
 import { useState } from "react";
+import { motion, useCycle } from "framer-motion";
+
+const variants_ul = {
+    open: {
+        transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    },
+    closed: {
+        transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    }
+};
+
+const variants_li = {
+    open: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            y: { stiffness: 1000, velocity: -100 }
+        }
+    },
+    closed: {
+        y: 50,
+        opacity: 0,
+        transition: {
+            y: { stiffness: 1000 }
+        },
+        transitionEnd: { display: "none" }
+    }
+};
+
+const dropdownOptions = ["PM1.0", "PM2.5", "PM10", "NO2", "O3"];
+
+const PollutantDropdownItem = ({ pollutant, handleSelect }: { pollutant: string, handleSelect: (pollutant: string) => void }) => {
+    return (
+        <motion.li variants={variants_li}>
+            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => handleSelect(pollutant)} type="button">{pollutant}</button>
+        </motion.li>
+    );
+}
 
 const PollutantDropDown = () => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useCycle(false, true);
     const [selectedPollutant, setSelectedPollutant] = useState("PM1.0");
 
     const handleSelect = (pollutant: string) => {
         setSelectedPollutant(pollutant);
-        setOpen(false);
+        setOpen();
     }
 
-    function displayPollutantNumber() {
+    function displayPollutant() {
         switch (selectedPollutant) {
             case "PM1.0":
                 return <div>PM<span className="align-sub">1</span></div>;
@@ -27,32 +65,16 @@ const PollutantDropDown = () => {
     }
 
     return (
-        <div className="absolute z-20 bottom-16 left-12">
-            {open && (
-                <div className="my-2">
-                    <ul className="space-y-2">
-                        <li>
-                            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => handleSelect("PM1.0")} type="button">PM<span className="align-sub">1</span> </button>
-                        </li>
-                        <li>
-                            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => handleSelect("PM2.5")} type="button">PM<span className="align-sub">5</span></button>
-                        </li>
-                        <li>
-                            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => handleSelect("PM10")} type="button">PM<span className="align-sub">10</span></button>
-                        </li>
-                        <li>
-                            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => handleSelect("NO2")} type="button">N<span className="align-sub">2</span></button>
-                        </li>
-                        <li>
-                            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => handleSelect("O3")} type="button">O<span className="align-sub">3</span></button>
-                        </li>
-                    </ul>
-                </div>
-            )}
-            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => setOpen(!open)} type="button">
-                {displayPollutantNumber()}
+        <motion.div animate={open ? "open" : "closed"} className="absolute z-20 bottom-16 left-12">
+            <motion.ul variants={variants_ul} className="my-2 space-y-2">
+                {dropdownOptions.map((pollutant) => (
+                    <PollutantDropdownItem key={pollutant} pollutant={pollutant} handleSelect={handleSelect} />
+                ))}
+            </motion.ul>
+            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => setOpen()} type="button">
+                {displayPollutant()}
             </button>
-        </div>
+        </motion.div>
     );
 }
 
