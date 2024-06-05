@@ -82,7 +82,7 @@ export const DragCloseDrawer = ({ open, setOpen, children }: Props) => {
                 className="h-2 w-14 cursor-grab touch-none rounded-full bg-neutral-700 active:cursor-grabbing"
               ></button>
             </div>
-            <div className="relative z-0 h-full p-4 pt-12">
+            <div className="relative z-0 h-full overflow-y-scroll p-4 pt-12">
               <div className="mx-auto max-w-2xl space-y-4 text-neutral-400">
                 {children}
               </div>
