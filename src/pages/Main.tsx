@@ -1,6 +1,7 @@
 "use client";
 
 import GeoSearchBar from "@/components/GeoSearchBar";
+import PollutantDropDown from "@/components/PollutantDropdown";
 import { DragCloseDrawer } from "@/components/modal/SwipeModal";
 import PolutantsSection from "@/sections/PolutantsSection";
 import "leaflet/dist/leaflet.css";
@@ -20,6 +21,7 @@ const MainPage = () => {
       <DragCloseDrawer open={open} setOpen={setOpen}>
         <PolutantsSection />
       </DragCloseDrawer>
+      <PollutantDropDown />
     </div>
   );
 };
