@@ -15,7 +15,8 @@ const PollutantCard = ({ value, label }: PollutantCardProps) => {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg>
             </div>
-            <p className="absolute bottom-0 right-0 p-6 text-right text-5xl">{value} <span>μg/m³</span></p>
+            <p className="text-center p-6 text-5xl">{value} <span>μg/m³</span></p>
+            <p className="absolute bottom-0 right-0 p-6 text-right text-2xl">Next hour: {value} <span>μg/m³</span></p>
         </div>
     );
 }
