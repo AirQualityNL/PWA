@@ -7,13 +7,16 @@ import PolutantsSection from "@/sections/PolutantsSection";
 import "leaflet/dist/leaflet.css";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import Location from "@/components/Location";
+import { Location, GetRelevantMonitors } from "@/components/Location";
 const MapSection = dynamic(() => import("@/sections/MapSection"), {
   ssr: false,
 });
 
 const MainPage = () => {
   const currentLocation = Location();
+  const currentMonitorInfo = GetRelevantMonitors(currentLocation);
+
+  console.log(currentMonitorInfo?.Station);
   const [open, setOpen] = useState(false);
 
   return (
