@@ -17,7 +17,6 @@ const variants_li = {
         transition: {
             y: { stiffness: 1000, velocity: -100 }
         },
-        transitionEnd: { display: "list-item" }
     },
     closed: {
         y: 50,
@@ -25,7 +24,6 @@ const variants_li = {
         transition: {
             y: { stiffness: 1000 }
         },
-        transitionEnd: { display: "none" }
     }
 };
 
