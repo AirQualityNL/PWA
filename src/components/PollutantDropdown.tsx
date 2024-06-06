@@ -16,7 +16,8 @@ const variants_li = {
         opacity: 1,
         transition: {
             y: { stiffness: 1000, velocity: -100 }
-        }
+        },
+        transitionEnd: { display: "list-item" }
     },
     closed: {
         y: 50,
@@ -28,51 +29,55 @@ const variants_li = {
     }
 };
 
-const dropdownOptions = ["PM1.0", "PM2.5", "PM10", "NO2", "O3"];
+const dropdownOptions = ["PM1", "PM2.5", "PM10", "NO2", "O3"];
+
+function displayPollutant(selectedPollutant: string) {
+    switch (selectedPollutant) {
+        case "PM1":
+            return <div>PM<span className="align-sub">1</span></div>;
+        case "PM2.5":
+            return <div>PM<span className="align-sub">5</span></div>;
+        case "PM10":
+            return <div>PM<span className="align-sub">10</span></div>;
+        case "NO2":
+            return <div>NO<span className="align-sub">2</span></div>;
+        case "O3":
+            return <div>O<span className="align-sub">3</span></div>;
+        default:
+            return null;
+    }
+}
 
 const PollutantDropdownItem = ({ pollutant, handleSelect }: { pollutant: string, handleSelect: (pollutant: string) => void }) => {
     return (
         <motion.li variants={variants_li}>
-            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => handleSelect(pollutant)} type="button">{pollutant}</button>
+            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => handleSelect(pollutant)} type="button">
+                {displayPollutant(pollutant)}
+            </button>
         </motion.li>
     );
 }
 
 const PollutantDropDown = () => {
-    const [open, setOpen] = useCycle(false, true);
-    const [selectedPollutant, setSelectedPollutant] = useState("PM1.0");
+    const [isOpen, toggleOpen] = useCycle(false, true);
+    const [selectedPollutant, setSelectedPollutant] = useState("PM1");
 
     const handleSelect = (pollutant: string) => {
         setSelectedPollutant(pollutant);
-        setOpen();
+        toggleOpen();
     }
 
-    function displayPollutant() {
-        switch (selectedPollutant) {
-            case "PM1.0":
-                return <div>PM<span className="align-sub">1</span></div>;
-            case "PM2.5":
-                return <div>PM<span className="align-sub">5</span></div>;
-            case "PM10":
-                return <div>PM<span className="align-sub">10</span></div>;
-            case "NO2":
-                return <div>NO<span className="align-sub">2</span></div>;
-            case "O3":
-                return <div>O<span className="align-sub">3</span></div>;
-            default:
-                return null;
-        }
-    }
+
 
     return (
-        <motion.div animate={open ? "open" : "closed"} className="absolute z-20 bottom-16 left-12">
+        <motion.div initial={false} animate={isOpen ? "open" : "closed"} className="absolute z-20 bottom-16 left-12">
             <motion.ul variants={variants_ul} className="my-2 space-y-2">
                 {dropdownOptions.map((pollutant) => (
                     <PollutantDropdownItem key={pollutant} pollutant={pollutant} handleSelect={handleSelect} />
                 ))}
             </motion.ul>
-            <button className="w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => setOpen()} type="button">
-                {displayPollutant()}
+            <button className="z-30 w-16 h-16 font-bold text-sm m-auto bg-white text-gray-800 rounded-full border" onClick={() => toggleOpen()} type="button">
+                {displayPollutant(selectedPollutant)}
             </button>
         </motion.div>
     );
