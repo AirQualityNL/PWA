@@ -1,4 +1,4 @@
-const GeoSearchBar = () => {
+const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const search = (
@@ -15,7 +15,10 @@ const GeoSearchBar = () => {
         console.error(error);
       });
   };
-
+  const handleFocus = () => {
+    const mem = currentFocus;
+    setCurrentFocus([0, 0]);
+  };
   return (
     <div className="absolute z-50 top-0 inset-x-0 w-[80vw] mt-8 mx-auto">
       <div className="flex flex-row">
@@ -59,7 +62,10 @@ const GeoSearchBar = () => {
             </button>
           </div>
         </form>
-        <button className="bg-white rounded-md p-2 border border-gray-400">
+        <button
+          onClick={() => handleFocus()}
+          className="bg-white rounded-md p-2 border border-gray-400"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-8"

@@ -14,15 +14,21 @@ const MapSection = dynamic(() => import("@/sections/MapSection"), {
 
 const MainPage = () => {
   const currentLocation = Location();
+  const [currentFocus, setCurrentFocus] = useState(currentLocation);
   const currentMonitorInfo = GetRelevantMonitors(currentLocation);
 
-  console.log(currentMonitorInfo?.Station);
   const [open, setOpen] = useState(false);
 
   return (
     <div className="h-screen flex">
-      <GeoSearchBar />
-      <MapSection />
+      <GeoSearchBar
+        setCurrentFocus={setCurrentFocus}
+        currentFocus={currentFocus}
+      />
+      <MapSection
+        currentLocation={currentLocation}
+        currentFocus={currentFocus}
+      />
       <DragHandle onClick={() => setOpen(true)} />
       <DragCloseDrawer open={open} setOpen={setOpen}>
         <PolutantsSection />
