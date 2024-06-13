@@ -23,21 +23,18 @@ export const Location = () => {
   });
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            Latitude: position.coords.latitude,
-            Longitude: position.coords.longitude,
-          });
-        },
-        (error) => {
-          console.error("Error getting geolocation:", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
+    const watchId = navigator.geolocation.watchPosition((position) => {
+      console.log(position.coords);
+      const { latitude, longitude } = position.coords;
+      setLocation({
+        Latitude: latitude,
+        Longitude: longitude,
+      });
+    });
+
+    return () => {
+      navigator.geolocation.clearWatch(watchId);
+    };
   }, []);
   return location;
 };
