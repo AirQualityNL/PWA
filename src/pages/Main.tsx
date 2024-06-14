@@ -47,9 +47,10 @@ const MainPage = () => {
 
   const [open, setOpen] = useState(false);
 
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false); // if true shows settings modal
 
-  const [currentPollutant, setCurrentPollutant] = useState("");
+  const [currentPollutant, setCurrentPollutant] = useState(""); // from pollutant selection set this name
+  // then from pollutantOptions get the values for the pollutant and give to the settings modal
   return (
     <div className="h-screen flex">
       <GeoSearchBar
