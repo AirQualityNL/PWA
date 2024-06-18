@@ -61,9 +61,15 @@ const MainPage = () => {
         currentLocation={currentLocation}
         currentFocus={currentFocus}
       />
+
       <DragHandle onClick={() => setOpen(true)} />
       <DragCloseDrawer open={open} setOpen={setOpen}>
-        <PolutantsSection />
+        <PolutantsSection
+          setCurrentPollutant={setCurrentPollutant}
+          pollutantOptions={pollutantOptions}
+          setOpenModal={setOpenModal}
+          setOpenDrawer={setOpen}
+        />
       </DragCloseDrawer>
       <PollutantDropDown />
 
