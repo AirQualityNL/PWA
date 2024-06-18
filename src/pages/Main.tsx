@@ -63,7 +63,7 @@ const MainPage = () => {
     <div className="h-screen flex">
       <GeoSearchBar
         setCurrentFocus={setCurrentFocus}
-        currentFocus={currentFocus}
+        currentFocus={currentLocation}
       />
       <MapSection
         currentLocation={currentLocation}

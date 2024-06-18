@@ -17,7 +17,7 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
   };
   const handleFocus = () => {
     const mem = currentFocus;
-    setCurrentFocus([0, 0]);
+    setCurrentFocus(mem);
   };
   return (
     <div className="absolute z-50 top-0 inset-x-0 w-[80vw] mt-8 mx-auto">
