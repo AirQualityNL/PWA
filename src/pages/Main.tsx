@@ -22,7 +22,7 @@ type PollutantOptions = {
   };
 };
 
-const pollutantOptions = {
+const pollutantOptions: PollutantOptions = {
   "PM2.5": {
     lowValue: 20,
     midValue: 50,
