@@ -13,6 +13,15 @@ const MapSection = dynamic(() => import("@/sections/MapSection"), {
   ssr: false,
 });
 
+type PollutantOptions = {
+  [key: string]: {
+    lowValue: number;
+    midValue: number;
+    highValue: number;
+    standardValue: number;
+  };
+};
+
 const pollutantOptions = {
   "PM2.5": {
     lowValue: 20,
@@ -45,12 +54,11 @@ const MainPage = () => {
   const [currentFocus, setCurrentFocus] = useState(currentLocation);
   const currentMonitorInfo = GetRelevantMonitors(currentLocation);
 
-  const [open, setOpen] = useState(false);
+  const [openPollutants, setOpenPollutants] = useState(false);
 
-  const [openModal, setOpenModal] = useState(false); // if true shows settings modal
+  const [openModal, setOpenModal] = useState(false);
 
-  const [currentPollutant, setCurrentPollutant] = useState(""); // from pollutant selection set this name
-  // then from pollutantOptions get the values for the pollutant and give to the settings modal
+  const [currentPollutant, setCurrentPollutant] = useState("PM2.5");
   return (
     <div className="h-screen flex">
       <GeoSearchBar
@@ -62,13 +70,13 @@ const MainPage = () => {
         currentFocus={currentFocus}
       />
 
-      <DragHandle onClick={() => setOpen(true)} />
-      <DragCloseDrawer open={open} setOpen={setOpen}>
+      <DragHandle onClick={() => setOpenPollutants(true)} />
+      <DragCloseDrawer open={openPollutants} setOpen={setOpenPollutants}>
         <PolutantsSection
           setCurrentPollutant={setCurrentPollutant}
           pollutantOptions={pollutantOptions}
           setOpenModal={setOpenModal}
-          setOpenDrawer={setOpen}
+          setOpenDrawer={setOpenPollutants}
         />
       </DragCloseDrawer>
       <PollutantDropDown />
@@ -76,13 +84,8 @@ const MainPage = () => {
       <SettingsModal
         open={openModal}
         setOpen={setOpenModal}
-        pollutantName="PM2.5"
-        pollutantSpecifics={{
-          lowValue: 40,
-          midValue: 100,
-          highValue: 180,
-          standardValue: 40,
-        }}
+        pollutantName={currentPollutant}
+        pollutantSpecifics={pollutantOptions[currentPollutant]}
       />
     </div>
   );
