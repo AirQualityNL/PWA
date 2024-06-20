@@ -18,7 +18,7 @@ const PolutantsSection = ({
             setOpenModal={setOpenModal}
             setOpenDrawer={setOpenDrawer}
             setCurrentPollutant={setCurrentPollutant}
-            label={<h1 className="text-6xl md:text-7xl p-6">{key}</h1>}
+            label={key}
           />
         );
       })}
