@@ -19,7 +19,7 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
     setCurrentFocus(currentFocus);
   };
   return (
-    <div className="absolute z-50 top-0 inset-x-0 w-[80vw] mt-8 mx-auto">
+    <div className="absolute z-50 top-0 inset-x-0 w-[80vw] sm:w-[75vw] mt-8 mx-auto">
       <div className="flex flex-row">
         <form onSubmit={handleSubmit} className="w-full">
           <label
@@ -28,7 +28,7 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
           >
             Search
           </label>
-          <div className="relative mx-12">
+          <div className="relative mx-4 sm:mx-12">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg
                 className="w-4 h-4 text-gray-500 dark:text-gray-400"

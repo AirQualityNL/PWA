@@ -1,13 +1,28 @@
-import { ReactElement } from "react";
-
 interface PollutantCardProps {
-  label: ReactElement;
+  label: string;
   currentValue: number;
   nextValue: number;
   setCurrentPollutant: (pollutant: string) => void;
   pollutant: string;
   setOpenModal: (open: boolean) => void;
   setOpenDrawer: (open: boolean) => void;
+}
+
+function displayPollutantLabel(pollutantKey: string) {
+  switch (pollutantKey) {
+    case "PM1":
+      return <h1 className="text-6xl md:text-7xl p-6">PM<span className="text-5xl">1</span ></h1>
+    case "PM2.5":
+      return <h1 className="text-6xl md:text-7xl p-6">PM<span className="text-5xl">2.5</span ></h1>
+    case "PM10":
+      return <h1 className="text-6xl md:text-7xl p-6">PM<span className="text-5xl">10</span ></h1>
+    case "NO2":
+      return <h1 className="text-6xl md:text-7xl p-6">NO<span className="text-5xl">2</span ></h1>
+    case "O3":
+      return <h1 className="text-6xl md:text-7xl p-6">O<span className="text-5xl">3</span ></h1>
+    default:
+      return null;
+  }
 }
 
 const PollutantCard = ({
@@ -27,7 +42,7 @@ const PollutantCard = ({
   return (
     <div className="relative rounded-md bg-slate-900 mx-16 sm:mx-0 h-72 text-gray-200">
       <div className="flex">
-        {label}
+        {displayPollutantLabel(label)}
         <svg
           onClick={() => clicky(pollutant)}
           xmlns="http://www.w3.org/2000/svg"

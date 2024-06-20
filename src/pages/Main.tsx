@@ -29,19 +29,19 @@ const pollutantOptions: PollutantOptions = {
     highValue: 90,
     standardValue: 20,
   },
-  "PM10.0": {
+  "PM10": {
     lowValue: 30,
     midValue: 75,
     highValue: 125,
     standardValue: 30,
   },
-  "NO2.0": {
+  "NO2": {
     lowValue: 30,
     midValue: 75,
     highValue: 125,
     standardValue: 30,
   },
-  "O3.0": {
+  "O3": {
     lowValue: 40,
     midValue: 100,
     highValue: 180,
