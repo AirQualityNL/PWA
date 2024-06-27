@@ -1,9 +1,12 @@
-import { useState } from "react";
+import DemoContext from "@/hook/demoContext";
+import { useContext, useState } from "react";
 
 const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
   const [searchResults, setSearchResults] = useState([] as any[]);
   const [trackedLocation, setTrackedLocation] = useState(null as any);
   const [inputValue, setInputValue] = useState("" as string);
+
+  const demoContext = useContext(DemoContext);
 
   const handleFocus = () => {
     setCurrentFocus(currentFocus);
@@ -26,7 +29,20 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
     setTrackedLocation(result);
     setInputValue(result.display_name);
     setSearchResults([]);
+
+    // Fetch demo mock data
+    fetchDemoMockData().then((data) => {
+      const { setDemoData } = demoContext;
+      setDemoData(data);
+    });
   };
+
+  const fetchDemoMockData = async () => {
+    const url = 'https://airquality-api.vercel.app/mock-predict'
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  }
 
   const searchResultsList = searchResults.map((result, index) => {
     return (

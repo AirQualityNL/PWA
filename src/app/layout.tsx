@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import "./globals.css";
+import DemoContext from "@/hook/demoContext";
 
 const APP_NAME = "Air Quality Eindhoven";
 const APP_DEFAULT_TITLE = "Air Quality Eindhoven";
@@ -48,10 +49,13 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const [demoData, setDemoData] = useState(null as any);
   return (
     <html lang="en" dir="ltr">
       <head />
-      <body>{children}</body>
+      <DemoContext.Provider value={{ demoData, setDemoData }}>
+        <body>{children}</body>
+      </DemoContext.Provider>
     </html>
   );
 }

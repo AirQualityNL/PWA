@@ -1,4 +1,6 @@
 import PollutantCard from "@/components/PollutantCard";
+import DemoContext from "@/hook/demoContext";
+import { useContext } from "react";
 
 const PolutantsSection = ({
   setCurrentPollutant,
@@ -6,6 +8,9 @@ const PolutantsSection = ({
   setOpenModal,
   setOpenDrawer,
 }: any) => {
+
+  const { demoData } = useContext(DemoContext);
+
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-auto">
       {Object.entries(pollutantOptions).map(([key, value]) => {
