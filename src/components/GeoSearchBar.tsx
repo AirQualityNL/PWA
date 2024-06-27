@@ -49,7 +49,7 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
     return (
       <li
         key={index}
-        className="sp-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-black"
+        className="sp-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
         onClick={() => searchResultClick(result)}
       >
         {result.display_name}
