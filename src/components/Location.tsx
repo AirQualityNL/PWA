@@ -18,8 +18,8 @@ interface CoordinateProps {
 }
 export const Location = () => {
   const [location, setLocation] = useState<CoordinateProps>({
-    Latitude: 0,
-    Longitude: 0,
+    Latitude: 51.4231,
+    Longitude: 5.4623,
   });
 
   useEffect(() => {
