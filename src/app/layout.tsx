@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import "./globals.css";
+import DemoContextLayout from "./DemoContext";
 
 const APP_NAME = "Air Quality Eindhoven";
 const APP_DEFAULT_TITLE = "Air Quality Eindhoven";
@@ -51,7 +52,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" dir="ltr">
       <head />
-      <body>{children}</body>
+      <DemoContextLayout>
+        <body>{children}</body>
+      </DemoContextLayout>
     </html>
   );
 }
