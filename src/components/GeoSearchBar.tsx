@@ -6,7 +6,7 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
   const [trackedLocation, setTrackedLocation] = useState(null as any);
   const [inputValue, setInputValue] = useState("" as string);
 
-  const demoContext = useContext(DemoContext);
+  const { setDemoData } = useContext(DemoContext);
 
   const handleFocus = () => {
     setCurrentFocus(currentFocus);
@@ -20,7 +20,9 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
       return;
     }
 
-    const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json`);
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${query}&format=json`
+    );
     const data = await response.json();
     setSearchResults(data);
   };
@@ -32,21 +34,24 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
 
     // Fetch demo mock data
     fetchDemoMockData().then((data) => {
-      const { setDemoData } = demoContext;
       setDemoData(data);
     });
   };
 
   const fetchDemoMockData = async () => {
-    const url = 'https://airquality-api.vercel.app/mock-predict'
+    const url = "https://airquality-api.vercel.app/mock-predict";
     const response = await fetch(url);
     const data = await response.json();
     return data;
-  }
+  };
 
   const searchResultsList = searchResults.map((result, index) => {
     return (
-      <li key={index} className="text-white p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => searchResultClick(result)}>
+      <li
+        key={index}
+        className="sp-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-black"
+        onClick={() => searchResultClick(result)}
+      >
         {result.display_name}
       </li>
     );
@@ -55,7 +60,12 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
   return (
     <div className="absolute z-50 top-0 inset-x-0 w-[80vw] sm:w-[75vw] mt-8 mx-auto">
       <div className="flex flex-row">
-        <form className="w-full">
+        <form
+          className="w-full"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <label
             htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -86,9 +96,10 @@ const GeoSearchBar = ({ setCurrentFocus, currentFocus }: any) => {
               // value={selectedResult?.display_name ?? ""}
               type="search"
               id="default-search"
-              className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-full p-4 ps-10 text-sm border border-gray-300 rounded-lg  text-black  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Strijp-s"
-              required />
+              required
+            />
             {searchResults.length > 0 && (
               <ul className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-600">
                 {searchResultsList}

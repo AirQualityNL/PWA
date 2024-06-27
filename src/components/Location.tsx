@@ -24,7 +24,6 @@ export const Location = () => {
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition((position) => {
-      console.log(position.coords);
       const { latitude, longitude } = position.coords;
       setLocation({
         Latitude: latitude,
